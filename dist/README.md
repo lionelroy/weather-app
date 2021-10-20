@@ -1,9 +1,9 @@
 # weather-app
-Weather forecast app made HTML, CSS and Javascript using Open Weather Map API.
+Weather forecast app made with HTML, SCSS and Javascript using the Open Weather Map API.
 <h3>Weather app made with:</h3>
  <ul>
     <li>HTML</li>
-    <li>CSS</li>
+    <li>SCSS</li>
     <li>Javascript</li>
  </ul>
 
