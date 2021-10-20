@@ -1,0 +1,27 @@
+{
+    "prettier.enableDebugLogs": true,
+    "workbench.colorTheme": "Monokai",
+    "prettier.vueIndentScriptAndStyle": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "prettier.useEditorConfig": false,
+    "prettier.jsxBracketSameLine": true,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "prettier.printWidth": 60,
+    "editor.tabSize": 2,
+    "[css]": {
+        "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "liveSassCompile.settings.formats": [
+        {
+          "format": "compressed",
+          "extensionName": ".min.css",
+          "savePath": "/dist/css"
+        }
+    ],
+    "liveSassCompile.settings.generateMap": false, "liveSassCompile.settings.autoprefix": [ "> 1%", "last 2 versions" ]
+}
