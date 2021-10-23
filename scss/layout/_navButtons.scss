@@ -2,5 +2,6 @@
   flex-grow: 1;
   @include flexCenter;
   justify-content: space-evenly;
-  margin-top: 0px;
+  padding: 0.5rem 0.25rem;
+
 }
