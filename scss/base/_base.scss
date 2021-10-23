@@ -6,7 +6,9 @@
 
 html {
   background-color: $background-color;
-  background-image: url("/dist/img/"); //create own images in img folder(clouds, fog, night, rain, snow)
+  background-image: url("/dist/img/clouds.jpg"); //create own images in img folder(clouds, fog, night, rain, snow)
+  background-size: cover;
+  background-position: center;
   font-size: 16px;
   font-family: 'Merriweather', serif;
   font-weight: bold;

@@ -3,7 +3,9 @@
 @import "base/base";
 @import "components/a11y";
 @import "components/buttons";
-@import "layout/searchBar";
-@import "layout/navButtons";
+@import "components/fadeIn";
 @import "layout/currentForecast";
 @import "layout/dailyForecast";
+@import "layout/navButtons";
+@import "layout/searchBar";
+@import "themes/backgrounds";
