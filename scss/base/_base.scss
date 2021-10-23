@@ -5,12 +5,12 @@
 }
 
 html {
-  background-color: $background-color;
-  background-image: url("/dist/img/clouds.jpg"); //create own images in img folder(clouds, fog, night, rain, snow)
+  background-image: url("../img/night.jpg");
   background-size: cover;
   background-position: center;
+  background-blend-mode: overlay;
   font-size: 16px;
-  font-family: 'Merriweather', serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   letter-spacing: 1px;
   color: $font-color;
