@@ -33,11 +33,11 @@
         font-size: 8rem;
       }
       @include mq(768px) {
-        font-size: 9rem;
+        font-size: 7rem;
       }
 
       .unit {
-        font-size: 1.65rem;
+        font-size: 1.4rem;
         color: $fadecolor;
         text-shadow: none;
         position: absolute;
