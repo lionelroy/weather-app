@@ -9,16 +9,16 @@ const animateButton = (element) => {
   element.nextElementSibling.classList.toggle("none");
 };
 
-export const displayError = (headermsg, scMsg) => {
+export const displayError = (headerMsg, srMsg) => {
   updateWeatherLocationHeader(headerMsg);
   updateScreenReaderConfirmation(srMsg);
-}
+};
 
 const updateWeatherLocationHeader = (message) => {
-  const h1 = document.getElementById("currentForecast_location");
+  const h1 = document.getElementById("currentForecast__location");
   h1.textContent = message;
 };
 
-const updateScreenReaderConfirmation = (message) => {
-  document.getElementById("confirmaiton").textContent = message;
+export const updateScreenReaderConfirmation = (message) => {
+  document.getElementById("confirmaton").textContent = message;
 };

@@ -1,5 +1,5 @@
-import { setLocationObject } from "./dataFunctions.js"
-import { addSpinner } from "./domFunctions.js";
+import { setLocationObject, getHomeLocation } from "./dataFunctions.js"
+import { addSpinner, displayError, updateScreenReaderConfirmation } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
 
@@ -9,13 +9,15 @@ const initApp = () => {
   geoButton.addEventListener("click", getGeoWeather);
   const homeButton = document.getElementById("home");
   homeButton.addEventListener("click", loadWeather);
+  const saveButton = document.getElementById("saveLocation");
+  saveButton.addEventListener("click", saveLocation);
   // setup
 
   // load weather
+  loadWeather();
 };
 
 document.addEventListener("DOMContentLoaded", initApp);
-
 
 const getGeoWeather = (event) => {
   if (event && event.type === "click") {
@@ -27,56 +29,70 @@ const getGeoWeather = (event) => {
 };
 
 const geoError = (errObj) => {
-  const errorMsg = errObj.message ? errObj.message : "Geolocation not supported";
+  const errMsg = errObj ? errObj.message : "Geolocation not supported";
   displayError(errMsg, errMsg);
 };
 
 const geoSuccess = (position) => {
   const myCoordsObj = {
     lat: position.coords.latitude,
-    lon: position.coords.longitute,
-    name: `Lat:${position.coords.latitude} long:${position.coords.longitude}`
+    lon: position.coords.longitude,
+    name: `Lat:${position.coords.latitude} Long:${position.coords.longitude}`
   };
   setLocationObject(currentLoc, myCoordsObj);
-  updateDataAndDisplay(currentLoc);  // update data and display
+  updateDataAndDisplay(currentLoc);
+};
+
+const loadWeather = (event) => {
+  const savedLocation = getHomeLocation();
+  if (!savedLocation && !event) return getGeoWeather();
+  if (!savedLocation && event.type === "click") {
+    displayError(
+      "No Home Location Saved.",
+      "Sorry. Please save your home location first."
+    );
+  } else if (savedLocation && !event) {
+    displayHomeLocationWeather(savedLocation);
+  } else {
+    const homeIcon = document.querySelector(".fa-home");
+    addSpinner(homeIcon);
+    displayHomeLocationWeather(savedLocation);
+  }
+};
+
+const displayHomeLocationWeather = (home) => {
+  if (typeof home === "string") {
+    const locationJson = JSON.parse(home);
+    const myCoordsObj = {
+      lat: locationJson.lat,
+      lon: locationJson.lon,
+      name: locationJson.name,
+      unit: locationJson.unit
+    };
+    setLocationObject(currentLoc, myCoordsObj);
+    updateDataAndDisplay(currentLoc);
+  }
+};
+
+const saveLocation = () => {
+  if (currentLoc.getLat() && currentLoc.getLon()) {
+    const saveIcon = document.querySelector(".fa-save");
+    addSpinner(saveIcon);
+    const location = {
+      name: currentLoc.getName(),
+      lat: currentLoc.getLat(),
+      lon: currentLoc.getLon(),
+      unit: currentLoc.getUnit()
+    };
+    localStorage.setItem("defaultWeatherLocation", JSON.stringify(location));
+    updateScreenReaderConfirmation(
+      `Saved ${currentLoc.getName()} as home location.`
+    );
+  }
 };
 
 const updateDataAndDisplay = async (locationObj) => {
+  console.log(locationObj);
   // const weatherJson = await getWeatherFromCoords(locationObj);
   // if (weatherJson) updateDataAndDisplay(weatherJson, locationObj);
 };
-
-
-
-
-
-
-
-        // <!-- Hard coded data...to do: generate content dynamically with js and API -->
-        // <div class="icon" id="icon"><i class="far fa-sun" aria-hidden="true" title="clear sky"></i></div>
-        // <div class="temp">11°<div class="unit">C</div></div>
-        // <div class="desc">Clear Sky</div>
-        // <div class="feels">Feels Like 9°</div>
-        // <div class="maxtemp">High 13°</div>
-        // <div class="mintemp">Low 7°</div>
-        // <div class="humidity">Humidity 44%</div>
-        // <div class="wind">wind 7 mph</div>
-
-
-
-      //    <!-- Hard coded data...to do: generate content dynamically with js and API -->
-      //    <div class="forecastDay"><p class="dayAbbreviation">SUN</p><img src="https://openweathermap.org/img/wn/03d.png" alt="scattered clouds"><p
-      //    class="dayHigh">61°</p><p class="dayLow">44°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">MON</p><img src="https://openweathermap.org/img/wn/03d.png" alt="scattered clouds"><p
-      //    class="dayHigh">62°</p><p class="dayLow">46°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">TUE</p><img src="https://openweathermap.org/img/wn/04d.png" alt="overcast clouds"><p
-      //    class="dayHigh">61°</p><p class="dayLow">52°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">WED</p><img src="https://openweathermap.org/img/wn/10d.png" alt="moderate rain"><p
-      //    class="dayHigh">70°</p><p class="dayLow">60°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">THU</p><img src="https://openweathermap.org/img/wn/10d.png" alt="moderate rain"><p
-      //    class="dayHigh">61°</p><p class="dayLow">44°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">FRI</p><img src="https://openweathermap.org/img/wn/03d.png" alt="scattered clouds"><p
-      //    class="dayHigh">61°</p><p class="dayLow">44°</p></div>
-      //  <div class="forecastDay"><p class="dayAbbreviation">SAT</p><img src="https://openweathermap.org/img/wn/03d.png" alt="scattered clouds"><p
-      //    class="dayHigh">61°</p><p class="dayLow">44°</p></div>
-
