@@ -1,3 +1,4 @@
+import { setLocationObject } from "./dataFunctions.js"
 import { addSpinner } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
@@ -6,6 +7,8 @@ const initApp = () => {
   // add listeners
   const geoButton = document.getElementById("getLocation");
   geoButton.addEventListener("click", getGeoWeather);
+  const homeButton = document.getElementById("home");
+  homeButton.addEventListener("click", loadWeather);
   // setup
 
   // load weather
@@ -23,6 +26,25 @@ const getGeoWeather = (event) => {
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 };
 
+const geoError = (errObj) => {
+  const errorMsg = errObj.message ? errObj.message : "Geolocation not supported";
+  displayError(errMsg, errMsg);
+};
+
+const geoSuccess = (position) => {
+  const myCoordsObj = {
+    lat: position.coords.latitude,
+    lon: position.coords.longitute,
+    name: `Lat:${position.coords.latitude} long:${position.coords.longitude}`
+  };
+  setLocationObject(currentLoc, myCoordsObj);
+  updateDataAndDisplay(currentLoc);  // update data and display
+};
+
+const updateDataAndDisplay = async (locationObj) => {
+  // const weatherJson = await getWeatherFromCoords(locationObj);
+  // if (weatherJson) updateDataAndDisplay(weatherJson, locationObj);
+};
 
 
 
