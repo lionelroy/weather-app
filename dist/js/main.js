@@ -1,5 +1,5 @@
-import { setLocationObject, getHomeLocation } from "./dataFunctions.js"
-import { addSpinner, displayError, updateScreenReaderConfirmation } from "./domFunctions.js";
+import { setLocationObject, getHomeLocation, cleanText } from "./dataFunctions.js"
+import { addSpinner, displayError, displayApiError, updateScreenReaderConfirmation } from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
 
@@ -14,7 +14,9 @@ const initApp = () => {
   const unitButton = document.getElementById("unit");
   unitButton.addEventListener("click", setUnitPref);
   const refreshButton = document.getElementById("refresh");
-  refreshButton.addEventListener("click", refreshWeather;
+  refreshButton.addEventListener("click", refreshWeather);
+  const locationEntry = document.getElementById("searchBar__form");
+  locationEntry.addEventListener("submit", submitNewLocation);
   // setup
 
   // load weather
@@ -106,6 +108,33 @@ const refreshWeather = () => {
   const refreshIcon = document.querySelector(".fa-sync-alt");
   addSpinner(refreshIcon);
   updateDataAndDisplay(currentLoc);
+};
+
+const submitNewLocation = async (event) => {
+  event.preventDefault();
+  const text = document.getElementById("searchBar__text").value;
+  const entryText = cleanText(text);
+  if (!entryText.length) return;
+  const locationIcon = document.querySelector(".fa-search");
+  addSpinner(locationIcon);
+  const coordsData = await getCoordsFromApi(entryText, currentLoc.getUnit());
+  if (coordsData) {
+    if (coordsData.cod === 200) {
+      const myCoordsObj = {
+        lat: coordsData.coord.lat,
+        lon: coordsData.coord.lon,
+        name: coordsData.sys.country
+          ? `${coordsData.name}, ${coordsData.sys.country}`
+          : coordsData.name
+      };
+      setLocationObject(currentLoc, myCoordsObj);
+      updateDataAndDisplay(currentLoc);
+    } else {
+      displayApiError(coordsData);
+    }
+  } else {
+    displayError("Connection Error", "Connection Error");
+  }
 };
 
 const updateDataAndDisplay = async (locationObj) => {
