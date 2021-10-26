@@ -98,7 +98,7 @@ const saveLocation = () => {
 };
 
 const setUnitPref = () => {
-  const unitIcon = document.querySelector(".fa-chart-bar");
+  const unitIcon = document.querySelector(".fa-exchange-alt");
   addSpinner(unitIcon);
   currentLoc.toggleUnit();
   updateDataAndDisplay(currentLoc);
