@@ -131,8 +131,45 @@ const setFocusOnSearch = () => {
 
 const createCurrentConditionsDivs = (weatherObj, unit) => {
   const tempUnit = unit === "metric" ? "C" : "F";
-  const windUnit = unit === "metric" ? "m/s" : "mph";
-  const icon = createMainImgDiv(weatherObj.current.wetaher[0].icon, weatherObj.current.weather[0].description);
+  const windUnit = unit === "mertic" ? "m/s" : "mph";
+  const icon = createMainImgDiv(
+    weatherObj.current.weather[0].icon,
+    weatherObj.current.weather[0].description
+  );
+  const temp = createElem(
+    "div",
+    "temp",
+    `${Math.round(Number(weatherObj.current.temp))}°`,
+    tempUnit
+  );
+  const properDesc = toProperCase(weatherObj.current.weather[0].description);
+  const desc = createElem("div", "desc", properDesc);
+  const feels = createElem(
+    "div",
+    "feels",
+    `Feels Like ${Math.round(Number(weatherObj.current.feels_like))}°`
+  );
+  const maxTemp = createElem(
+    "div",
+    "maxtemp",
+    `High ${Math.round(Number(weatherObj.daily[0].temp.max))}°`
+  );
+  const minTemp = createElem(
+    "div",
+    "mintemp",
+    `Low ${Math.round(Number(weatherObj.daily[0].temp.min))}°`
+  );
+  const humidity = createElem(
+    "div",
+    "humidity",
+    `Humidity ${weatherObj.current.humidity}%`
+  );
+  const wind = createElem(
+    "div",
+    "wind",
+    `Wind ${Math.round(Number(weatherObj.current.wind_speed))} ${windUnit}`
+  );
+  return [icon, temp, desc, feels, maxTemp, minTemp, humidity, wind];
 };
 
 const createMainImgDiv = (icon, altText) => {
@@ -143,4 +180,19 @@ const createMainImgDiv = (icon, altText) => {
   faIcon.title = altText;
   iconDiv.appendChild(faIcon);
   return iconDiv;
+};
+
+const createElem = (elemType, divClassName, divText, unit) => {
+  const div = document.createElement(elemType);
+  div.className = divClassName;
+  if (divText) {
+    div.textContent = divText;
+  }
+  if (divClassName === "temp") {
+    const unitDiv = document.createElement("div");
+    unitDiv.className = "unit";
+    unitDiv.textContent = unit;
+    div.appendChild(unitDiv);
+  }
+  return div;
 };
