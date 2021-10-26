@@ -112,9 +112,9 @@ const getWeatherClass = (icon) => {
   const firstTwoChars = icon.slice(0, 2);
   const lastChar = icon.slice(2);
   const weatherLookup = {
-    "09": "snow",
+    "09": "rain",
     10: "rain",
-    11: "rain",
+    11: "clouds",
     13: "snow",
     50: "fog"
   };
