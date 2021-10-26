@@ -99,12 +99,13 @@
     }
 
     .humidity {
-      display: none;
       grid-row: 6 / span 1;
       grid-column: 1 / span 4;
       padding-top: 0.5rem;
       font-weight: normal;
+      font-size: smaller;
       color: $fadecolor;
+      @include flexCenter;
       @include mqMaxWMinH(1024px, 700px) {
         @include flexCenter;
       }
@@ -114,12 +115,13 @@
     }
 
     .wind {
-      display: none;
       grid-row: 7 / span 1;
       grid-column: 1 / span 4;
       padding-top: 0.5rem;
       font-weight: normal;
+      font-size: smaller;
       color: $fadecolor;
+      @include flexCenter;
       @include mqMaxWMinH(1024px, 700px) {
         @include flexCenter;
       }

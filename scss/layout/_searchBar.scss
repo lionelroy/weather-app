@@ -36,7 +36,8 @@
     .searchBar__button:focus {
       border: none;
       box-shadow: none;
-      text-shadow: 4px 2px 5px $text-shadow-color;
+      color: $text-shadow-color;
+      text-shadow: 4px 2px 5px $shadowcolor;
     }
   }
 

@@ -2,7 +2,7 @@
   min-width: 48px;
   min-height: 48px;
   color: $button-textcolor;
-  border: 2px solid $bordercolor;
+  border: 2px solid $shadowcolor;
   border-radius: 50%;
   outline: none;
   font-size: 1.25rem;
@@ -21,6 +21,27 @@
 
 .button:hover,
 .button:focus {
-  box-shadow: 4px 2px 5px $text-shadow-color;
-  border-color: $font-color;
+  box-shadow: 4px 2px 5px $shadowcolor;
+  border-color: $navButtons-bgcolor;
 }
+
+#home {
+  background-color: $navButtons-bgcolor;
+}
+
+#getLocation {
+  background-color: $navButtons-bgcolor;
+}
+
+#saveLocation {
+  background-color: $navButtons-bgcolor;
+}
+
+#unit {
+  background-color: $navButtons-bgcolor;
+}
+
+#refresh{
+  background-color: $navButtons-bgcolor;
+}
+

@@ -33,9 +33,9 @@ main {
   flex-grow: 1;
   color: $font-color;
   background-color: $mask-color;
-  border: 1px solid $bordercolor;
-  border-radius: 10px;
-  box-shadow: 1px 1px 2.5px $shadowcolor;
+  border: 2px solid $bordercolor;
+  border-radius: 15px;
+  box-shadow: 1px 1px 10px $shadowcolor;
 }
 
 img {
