@@ -53,6 +53,12 @@ export const updateDisplay = (weatherJson, locationObj) => {
     weatherJson,
     locationObj
   );
+  updateScreenReaderConfirmation(screenReaderWeather);
+  updateWeatherLocationHeader(locationObj.getName());
+  // current conditions
+  const ccArray = createCurrentConditionsDivs(weatherJson, locationObj.getUnit());
+  // six day forecast
+  setFocusOnSearch();
   fadeDisplay();
 }; 
 
@@ -117,4 +123,24 @@ const buildScreenReaderWeather = (weatherJson, locationObj) => {
   return `${weatherJson.current.weather[0].description} and ${Math.round(
     Number(weatherJson.current.temp)
   )}°${tempUnit} in ${location}`;
+};
+
+const setFocusOnSearch = () => {
+  document.getElementById("searchBar__text").focus();
+};
+
+const createCurrentConditionsDivs = (weatherObj, unit) => {
+  const tempUnit = unit === "metric" ? "C" : "F";
+  const windUnit = unit === "metric" ? "m/s" : "mph";
+  const icon = createMainImgDiv(weatherObj.current.wetaher[0].icon, weatherObj.current.weather[0].description);
+};
+
+const createMainImgDiv = (icon, altText) => {
+  const iconDiv = createElem("div", "icon");
+  iconDiv.id = "icon";
+  const faIcon = translateIconToFontAwesome(icon);
+  faIcon.ariaHidden = true;
+  faIcon.title = altText;
+  iconDiv.appendChild(faIcon);
+  return iconDiv;
 };
