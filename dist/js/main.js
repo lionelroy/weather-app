@@ -1,5 +1,18 @@
-import { setLocationObject, getHomeLocation, getWeatherFromCoords, getCoordsFromApi, cleanText } from "./dataFunctions.js"
-import { setPlaceholderText, addSpinner, displayError, displayApiError, updateScreenReaderConfirmation, updateDisplay } from "./domFunctions.js";
+import {
+  setLocationObject,
+  getHomeLocation,
+  getWeatherFromCoords,
+  getCoordsFromApi,
+  cleanText
+} from "./dataFunctions.js";
+import {
+  setPlaceholderText,
+  addSpinner,
+  displayError,
+  displayApiError,
+  updateScreenReaderConfirmation,
+  updateDisplay
+} from "./domFunctions.js";
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
 
