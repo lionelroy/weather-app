@@ -39,11 +39,13 @@ const initApp = () => {
 document.addEventListener("DOMContentLoaded", initApp);
 
 const getGeoWeather = (event) => {
-  if (event && event.type === "click") {
-    const mapIcon = document.querySelector(".fa-map-marker-alt");
-    addSpinner(mapIcon);
+  if (event) {
+    if (event.type === "click") {
+      const mapIcon = document.querySelector(".fa-map-marker-alt");
+      addSpinner(mapIcon);
+    }
   }
-  if (!navigator.geolocation) return geoError();
+  if (!navigator.geolocation) geoError();
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 };
 

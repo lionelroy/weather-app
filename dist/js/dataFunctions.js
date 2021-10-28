@@ -25,7 +25,7 @@ export const getWeatherFromCoords = async (locationObj) => {
     return weatherJson;
   } catch (err) {
     console.error(err);
-  } 
+  }
 };
 
 export const getCoordsFromApi = async (entryText, units) => {
@@ -36,13 +36,11 @@ export const getCoordsFromApi = async (entryText, units) => {
   try {
     const dataStream = await fetch(encodedUrl);
     const jsonData = await dataStream.json();
-    console.log(jsonData);
     return jsonData;
   } catch (err) {
     console.error(err.stack);
-  } 
-};  
-
+  }
+};
 
 export const cleanText = (text) => {
   const regex = / {2,}/g;
