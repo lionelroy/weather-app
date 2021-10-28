@@ -8,3 +8,4 @@ Weather forecast app made with HTML, SCSS and Javascript using the Open Weather 
  </ul>
 
 <a class="README-link" href="https://lionelroy.github.io/weather-app/dist/index.html">Live Demo</a>
+
