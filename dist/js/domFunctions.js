@@ -112,9 +112,9 @@ const getWeatherClass = (icon) => {
   const firstTwoChars = icon.slice(0, 2);
   const lastChar = icon.slice(2);
   const weatherLookup = {
-    "09": "rain",
+    "09": "snow",
     10: "rain",
-    11: "clouds",
+    11: "rain",
     13: "snow",
     50: "fog"
   };
@@ -182,12 +182,12 @@ const createCurrentConditionsDivs = (weatherObj, unit) => {
   const humidity = createElem(
     "div",
     "humidity",
-    `HUM: ${weatherObj.current.humidity}%`
+    `Humidity ${weatherObj.current.humidity}%`
   );
   const wind = createElem(
     "div",
     "wind",
-    `Wind: ${Math.round(Number(weatherObj.current.wind_speed))}${windUnit}`
+    `Wind ${Math.round(Number(weatherObj.current.wind_speed))} ${windUnit}`
   );
   return [icon, temp, desc, feels, maxTemp, minTemp, humidity, wind];
 };
