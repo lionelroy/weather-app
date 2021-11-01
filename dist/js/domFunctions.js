@@ -182,12 +182,12 @@ const createCurrentConditionsDivs = (weatherObj, unit) => {
   const humidity = createElem(
     "div",
     "humidity",
-    `Humidity ${weatherObj.current.humidity}%`
+    `HUM: ${weatherObj.current.humidity}%`
   );
   const wind = createElem(
     "div",
     "wind",
-    `Wind ${Math.round(Number(weatherObj.current.wind_speed))} ${windUnit}`
+    `Wind: ${Math.round(Number(weatherObj.current.wind_speed))} ${windUnit}`
   );
   return [icon, temp, desc, feels, maxTemp, minTemp, humidity, wind];
 };
