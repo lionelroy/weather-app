@@ -23,8 +23,8 @@ Features:
 - Weather data can be refreshed with the refresh button.
 
 Learned:
-- Mobile first design.
-- Responsive application design.
+- Mobile first development.
+- Responsive design.
 - Accessibility for screen readers with a11y.scss component.
 - Fetch(Async / Await) with the openWeatherMap API.
 - Error handling for json data.
