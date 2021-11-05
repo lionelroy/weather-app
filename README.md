@@ -17,10 +17,10 @@ Weather forecast application that lets users fetch weather from anywhere around 
 
 Features: 
 
-- Current weather and six days foreccast.
+- Current weather and six days forecast.
 - User will be asked to allow or block location on page load or use the Get location button which will give your location longitude, latitude and weather forecast.
 - The unit of measurement can be changed manually from imperial to metric by the user with the toggle button.
-- User can save is location with the Save location button and then access that location with the Home location button.
+- User can save his/her location with the Save location button and then access the saved location with the Home location button.
 - Weather data can be refreshed with the refresh button.
 
 Learned:
