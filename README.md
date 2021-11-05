@@ -13,7 +13,6 @@ Weather forecast application that lets users fetch weather from anywhere around 
 ## Preview:
 <img src="README-images/cell.png" alt="cell" width="250"/>
 <img src="README-images/ipad.png" alt="ipad" width="500"/>
-<img src="README-images/desktop.png" alt="desktop" width="800"/>
 
 Features: 
 
